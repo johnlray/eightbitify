@@ -1,0 +1,11 @@
+Package: eightbitify
+Title: What The Package Does (one line, title case required)
+Version: 0.1
+Authors@R: person("John", "Ray", email = "j.logan.ray@gmail.com",
+                  role = c("aut", "cre"))
+Description: Converts an image into an 8-bit version
+Depends: R (>= 3.1.0)
+LazyData: true
+Imports:
+	tidyverse
+RoxygenNote: 6.0.1
