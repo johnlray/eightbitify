@@ -22,4 +22,9 @@
   Gs <- as.hexmode(as.integer(the_cimg[,,2]*255))
   Bs <- as.hexmode(as.integer(the_cimg[,,3]*255))
   
+  # break the image into chunks
+  
+  # find the average of each chunk
+  
+  # reassemble
 #}
