@@ -10,6 +10,7 @@
   info <- image_info(img)
   
   the_cimg <- magick2cimg(img)
+  cimg_df <- as.data.frame(the_cimg)
   
   w <- info$width
   h <- info$h
@@ -17,5 +18,8 @@
   winc <- round(w/256, 0)
   hinc <- round(h/256, 0)
   
-  imgradient(img, "x", scheme = 3)
+  Rs <- as.hexmode(as.integer(the_cimg[,,1]*255))
+  Gs <- as.hexmode(as.integer(the_cimg[,,2]*255))
+  Bs <- as.hexmode(as.integer(the_cimg[,,3]*255))
+  
 #}
