@@ -27,7 +27,7 @@ pixelate <- function(img_path, resolution){
   ystart <- seq(1, h, by = hinc)
   
   # find the average of each chunk
-  
+  image_crop(img, "300x300+0")
   
   # reassemble
 }
