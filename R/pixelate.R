@@ -4,7 +4,7 @@
 #' @return 
 #' @examples
 #' @export
-#pixelate <- function(img_path, resolution){
+pixelate <- function(img_path, resolution){
   img <- image_read('http://jeroen.github.io/images/tiger.svg')
   
   info <- image_info(img)
@@ -23,8 +23,11 @@
   Bs <- as.hexmode(as.integer(the_cimg[,,3]*255))
   
   # break the image into chunks
+  xstart <- seq(1, w, by = winc)
+  ystart <- seq(1, h, by = hinc)
   
   # find the average of each chunk
   
+  
   # reassemble
-#}
+}
