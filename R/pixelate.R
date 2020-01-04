@@ -35,5 +35,5 @@ pixelate <- function(img_path, resolution){
     }
   }
   
-  # reassemble
+  # reassemble -- maybe with the same offsetting approach used to disassemble?
 }
