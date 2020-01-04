@@ -30,9 +30,8 @@ pixelate <- function(img_path, resolution){
   for(i in 1:length(xstart)){
     for(j in 1:length(ystart)){
       crop_statement <- paste0(winc, "x", hinc, "+", xstart[i], "+", ystart[j])
-      temp <- image_crop(img, crop_statement)
-      print(paste0("done with frame ", crop_statement))
-      print(temp)
+      temp <- image_crop(img, crop_statement) %>% image_median(radius = 5)
+      
     }
   }
   image_crop(img, "300x300+100+50")
