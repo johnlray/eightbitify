@@ -8,7 +8,6 @@
 
 library(magick)
 library(imager)
-library(clarifai)
 
 pixelate <- function(img_path, resolution){
   img <- image_read('http://jeroen.github.io/images/tiger.svg')
@@ -37,7 +36,6 @@ pixelate <- function(img_path, resolution){
     for(j in 1:length(ystart)){
       crop_statement <- paste0(winc, "x", hinc, "+", xstart[i], "+", ystart[j])
       temp <- image_crop(img, crop_statement) %>% image_quantize(max = 2) %>% image_median(radius = 5)
-      
       
     }
   }
