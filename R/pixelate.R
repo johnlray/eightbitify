@@ -4,6 +4,11 @@
 #' @return 
 #' @examples
 #' @export
+#' 
+
+library(magick)
+library(imager)
+
 pixelate <- function(img_path, resolution){
   img <- image_read('http://jeroen.github.io/images/tiger.svg')
   
