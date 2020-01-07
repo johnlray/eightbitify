@@ -8,6 +8,7 @@
 
 library(magick)
 library(imager)
+library(clarifai)
 
 pixelate <- function(img_path, resolution){
   img <- image_read('http://jeroen.github.io/images/tiger.svg')
@@ -28,14 +29,15 @@ pixelate <- function(img_path, resolution){
   Bs <- as.hexmode(as.integer(the_cimg[,,3]*255))
   
   # break the image into chunks
-  xstart <- seq(1, w, by = winc)
-  ystart <- seq(1, h, by = hinc)
+  xstart <- seq(1, w, by = winc*10)
+  ystart <- seq(1, h, by = hinc*10)
   
   # find the average of each chunk
   for(i in 1:length(xstart)){
     for(j in 1:length(ystart)){
       crop_statement <- paste0(winc, "x", hinc, "+", xstart[i], "+", ystart[j])
       temp <- image_crop(img, crop_statement) %>% image_quantize(max = 2) %>% image_median(radius = 5)
+      
       
     }
   }
