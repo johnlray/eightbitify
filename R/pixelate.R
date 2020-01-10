@@ -14,8 +14,8 @@ pixelate <- function(img_path, resolution){
   
   info <- image_info(img)
   
-  the_cimg <- magick2cimg(img)
-  cimg_df <- as.data.frame(the_cimg)
+  #the_cimg <- magick2cimg(img)
+  #cimg_df <- as.data.frame(the_cimg)
   
   w <- info$width
   h <- info$h
@@ -23,9 +23,9 @@ pixelate <- function(img_path, resolution){
   winc <- round(w/256, 0)
   hinc <- round(h/256, 0)
   
-  Rs <- as.hexmode(as.integer(the_cimg[,,1]*255))
-  Gs <- as.hexmode(as.integer(the_cimg[,,2]*255))
-  Bs <- as.hexmode(as.integer(the_cimg[,,3]*255))
+  #Rs <- as.hexmode(as.integer(the_cimg[,,1]*255))
+  #Gs <- as.hexmode(as.integer(the_cimg[,,2]*255))
+  #Bs <- as.hexmode(as.integer(the_cimg[,,3]*255))
   
   # break the image into chunks
   xstart <- seq(1, w, by = winc*10)
