@@ -48,5 +48,13 @@ pixelate <- function(img_path, resolution){
   }
   
   # turn into a plot
+  dat <- cbind(x_s, y_s, col_s) %>% data.frame(stringsAsFactors = F)
+  dat$x_s <- as.numeric(dat$x_s)
+  dat$y_s <- as.numeric(dat$y_s)
+  dat$col_s <- paste0("#", dat$col_s)
   
+  ggplot(dat, aes(x = x_s, y = y_s, fill = col_s)) +
+    geom_tile() +
+    theme_null() +
+    theme(legend.position = 'bottom')
 }
