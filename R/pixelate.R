@@ -32,15 +32,21 @@ pixelate <- function(img_path, resolution){
   ystart <- seq(1, h, by = hinc*10)
   
   res_mat <- matrix(nrow = length(xstart), ncol = length(ystart))
-  
+  x_s <- NULL
+  y_s <- NULL
+  col_s <- NULL
   # find the average of each chunk
   for(i in 1:length(xstart)){
     for(j in 1:length(ystart)){
       crop_statement <- paste0(winc, "x", hinc, "+", xstart[i], "+", ystart[j])
       temp <- image_crop(img, crop_statement) %>% image_quantize(max = 2) %>% image_median(radius = 5)
-      res_mat[i, j] <- as.integer(temp) %>% as.hexmode() %>% as.character() %>% c() %>% table() %>% sort() %>% head(1) %>% names()
+      x_s <- c(x_s, i)
+      y_s <- c(y_s, j)
+      col_s <- c(col_s, (as.integer(temp) %>% as.hexmode() %>% as.character() %>% c() %>% table() %>% sort() %>% head(1) %>% names()))
+      #res_mat[i, j] <- (as.integer(temp) %>% as.hexmode() %>% as.character() %>% c() %>% table() %>% sort() %>% head(1) %>% names())
     }
   }
   
-  # reassemble -- maybe with the same offsetting approach used to disassemble?
+  # turn into a plot
+  
 }
