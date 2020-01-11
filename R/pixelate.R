@@ -35,6 +35,7 @@ pixelate <- function(img_path, resolution){
   x_s <- NULL
   y_s <- NULL
   col_s <- NULL
+  
   # find the average of each chunk
   for(i in 1:length(xstart)){
     for(j in 1:length(ystart)){
@@ -55,7 +56,7 @@ pixelate <- function(img_path, resolution){
   
   ggplot(dat, aes(x = x_s, y = y_s, fill = col_s)) +
     geom_tile() +
-    scale_fill_manual(values=unique(dat$col_s)) +
+    scale_fill_manual(values=dat$col_s) +
     theme_void() +
     theme(legend.position = 'null')
 }
