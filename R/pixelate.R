@@ -49,14 +49,12 @@ pixelate <- function(img_path, resolution){
     }
   }
   
-  # turn into a plot
-  dat <- cbind(x_s, y_s, col_s) %>% data.frame(stringsAsFactors = F)
-  dat$x_s <- as.numeric(dat$x_s)
-  dat$y_s <- as.numeric(dat$y_s)
-  dat$col_s <- paste0("#", substr(dat$col_s, 1, 6))
+  res <- melt(res_mat)
   
-  ggplot(melt(res_mat), aes(x = Var1, y = Var2, fill = value)) +
+  ggplot(res, aes(x = Var1, y = Var2, fill = value)) +
     geom_tile(color = 'black') +
+    geom_text(aes(label = value), color = 'white') +
+    scale_fill_manual(values = res$value) +
     theme_void() +
     theme(legend.position = 'null')
 }
