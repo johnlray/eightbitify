@@ -41,10 +41,11 @@ pixelate <- function(img_path, resolution){
     for(j in 1:length(ystart)){
       crop_statement <- paste0(winc, "x", hinc, "+", xstart[i], "+", ystart[j])
       temp <- image_crop(img, crop_statement) %>% image_quantize(max = 2) %>% image_median(radius = 5)
+
       x_s <- c(x_s, i)
       y_s <- c(y_s, j)
       col_s <- c(col_s, (as.integer(temp) %>% as.hexmode() %>% as.character() %>% c() %>% table() %>% sort() %>% head(1) %>% names()))
-      #res_mat[i, j] <- (as.integer(temp) %>% as.hexmode() %>% as.character() %>% c() %>% table() %>% sort() %>% head(1) %>% names())
+      res_mat[i, j] <- (as.integer(temp) %>% as.hexmode() %>% as.character() %>% c() %>% table() %>% sort() %>% head(1) %>% names())
     }
   }
   
@@ -55,7 +56,7 @@ pixelate <- function(img_path, resolution){
   dat$col_s <- paste0("#", substr(dat$col_s, 1, 6))
   
   ggplot(dat, aes(x = x_s, y = y_s, fill = col_s)) +
-    geom_tile() +
+    geom_tile(color = 'black') +
     scale_fill_manual(values=dat$col_s) +
     theme_void() +
     theme(legend.position = 'null')
