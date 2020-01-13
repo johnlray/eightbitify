@@ -55,9 +55,8 @@ pixelate <- function(img_path, resolution){
   dat$y_s <- as.numeric(dat$y_s)
   dat$col_s <- paste0("#", substr(dat$col_s, 1, 6))
   
-  ggplot(dat, aes(x = x_s, y = y_s, fill = col_s)) +
+  ggplot(melt(res_mat), aes(x = Var1, y = Var2, fill = value)) +
     geom_tile(color = 'black') +
-    scale_fill_manual(values=dat$col_s) +
     theme_void() +
     theme(legend.position = 'null')
 }
