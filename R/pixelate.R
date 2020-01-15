@@ -8,6 +8,8 @@
 
 library(magick)
 library(imager)
+library(ggplot2)
+library(reshape2)
 
 pixelate <- function(img_path, resolution){
   img <- image_read('http://jeroen.github.io/images/tiger.svg')
@@ -32,9 +34,6 @@ pixelate <- function(img_path, resolution){
   ystart <- seq(1, h, by = hinc*5)
   
   res_mat <- matrix(nrow = length(xstart), ncol = length(ystart))
-  #x_s <- NULL
-  #y_s <- NULL
-  #col_s <- NULL
   
   # find the average of each chunk
   for(i in 1:length(xstart)){
@@ -42,21 +41,18 @@ pixelate <- function(img_path, resolution){
       crop_statement <- paste0(winc, "x", hinc, "+", xstart[i], "+", ystart[j])
       temp <- image_crop(img, crop_statement) %>% image_quantize(max = 2) %>% image_median(radius = 5)
 
-      #x_s <- c(x_s, i)
-      #y_s <- c(y_s, j)
-      col_s <- c(col_s, (as.integer(temp) %>% as.hexmode() %>% as.character() %>% c() %>% table() %>% sort() %>% head(1) %>% names()))
       res_mat[i, j] <- (as.integer(temp) %>% as.hexmode() %>% as.character() %>% c() %>% table() %>% sort() %>% head(1) %>% names())
     }
   }
   
   res <- melt(res_mat)
   res$value <- as.character(res$value)
-  res$value <- paste0('#', substr(res$value, 3, 8))
+  res$value <- paste0('#', res$value)#, substr(res$value, 3, 8))
   
   ggplot(res, aes(x = Var1, y = Var2, fill = value)) +
     geom_tile(color = 'black') +
     geom_text(aes(label = value), color = 'white') +
-    scale_fill_manual(values = as.character(res$value)) +
+    scale_fill_manual(values = unique(res$value)) +
     theme_void() +
     theme(legend.position = 'null')
 }
