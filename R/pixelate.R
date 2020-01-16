@@ -47,7 +47,7 @@ pixelate <- function(img_path, resolution){
   
   res <- melt(res_mat)
   res$value <- as.character(res$value)
-  res$value <- paste0('#', substr(res$value, 3, 8))
+  res$value <- paste0('#', substr(res$value, 1, 6))
   
   ggplot(res, aes(x = Var1, y = Var2, fill = value)) +
     geom_tile() +
