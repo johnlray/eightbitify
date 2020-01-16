@@ -47,11 +47,11 @@ pixelate <- function(img_path, resolution){
   
   res <- melt(res_mat)
   res$value <- as.character(res$value)
-  res$value <- paste0('#', res$value)#, substr(res$value, 3, 8))
+  res$value <- paste0('#', substr(res$value, 3, 8))
   
   ggplot(res, aes(x = Var1, y = Var2, fill = value)) +
-    geom_tile(color = 'black') +
-    geom_text(aes(label = value), color = 'white') +
+    geom_tile() +
+    geom_text(aes(label = value), color = 'black') +
     scale_fill_manual(values = unique(res$value)) +
     theme_void() +
     theme(legend.position = 'null')
