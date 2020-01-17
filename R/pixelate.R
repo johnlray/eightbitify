@@ -11,6 +11,24 @@ library(imager)
 library(ggplot2)
 library(reshape2)
 
+get_colorPal <- function(im, n=8, cs="RGB"){
+  #print(cs) 
+  tmp <-im %>% image_resize("100") %>% 
+    image_quantize(max=n, colorspace=cs) %>%  ## reducing colours! different colorspace gives you different result
+    magick2cimg() %>%  ## I'm converting, becauase I want to use as.data.frame function in imager package.
+    RGBtoHSV() %>% ## i like sorting colour by hue rather than RGB (red green blue)
+    as.data.frame(wide="c") %>%  #3 making it wide makes it easier to output hex colour
+    mutate(hex=hsv(rescale(c.1, from=c(0,360)),c.2,c.3),
+           hue = c.1,
+           sat = c.2,
+           value = c.3) %>%
+    count(hex, hue, sat,value, sort=T) %>% 
+    mutate(colorspace = cs)
+  
+  return(tmp %>% select(colorspace,hex,hue,sat,value,n)) ## I want data frame as a result.
+  
+}
+
 pixelate <- function(img_path, resolution){
   img <- image_read('http://jeroen.github.io/images/tiger.svg')
   
@@ -39,7 +57,7 @@ pixelate <- function(img_path, resolution){
   for(i in 1:length(xstart)){
     for(j in 1:length(ystart)){
       crop_statement <- paste0(winc, "x", hinc, "+", xstart[i], "+", ystart[j])
-      temp <- image_crop(img, crop_statement) %>% image_quantize(max = 2) %>% image_median(radius = 5)
+      temp <- image_crop(img, crop_statement) %>% image_quantize(max = 2) %>% get_colorPal() #image_median(radius = 5)
 
       res_mat[i, j] <- (as.integer(temp) %>% as.hexmode() %>% as.character() %>% c() %>% table() %>% sort() %>% head(1) %>% names())
     }
