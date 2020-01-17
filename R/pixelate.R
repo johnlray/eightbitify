@@ -49,8 +49,8 @@ pixelate <- function(img_path, resolution){
   #Bs <- as.hexmode(as.integer(the_cimg[,,3]*255))
   
   # break the image into chunks
-  xstart <- seq(1, w, by = winc*5)
-  ystart <- seq(1, h, by = hinc*5)
+  xstart <- seq(1, w, by = winc*2)
+  ystart <- seq(1, h, by = hinc*2)
   
   res_mat <- matrix(nrow = length(xstart), ncol = length(ystart))
   
@@ -70,10 +70,11 @@ pixelate <- function(img_path, resolution){
   res$value <- as.character(res$value)
   res$value <- paste0('#', substr(res$value, 1, 6))
   
-  ggplot(res, aes(x = Var1, y = Var2, fill = value)) +
+  ggplot(res, aes(x = Var1, y = Var2*-1, fill = value)) +
     geom_tile() +
     geom_text(aes(label = value), color = 'black') +
     scale_fill_manual(values = unique(res$value)) +
     theme_void() +
     theme(legend.position = 'null')
+  
 }
