@@ -10,6 +10,7 @@ library(magick)
 library(imager)
 library(ggplot2)
 library(reshape2)
+library(scales)
 
 get_colorPal <- function(im, n=8, cs="RGB"){
   #print(cs) 
