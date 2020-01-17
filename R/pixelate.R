@@ -73,7 +73,7 @@ pixelate <- function(img_path, resolution){
   ggplot(res, aes(x = Var1, y = Var2*-1, fill = value)) +
     geom_tile() +
     geom_text(aes(label = value), color = 'black') +
-    scale_fill_manual(values = unique(res$value)) +
+    scale_fill_manual(values = unique(res$value), aesthetics = 'identity') +
     theme_void() +
     theme(legend.position = 'null')
   
