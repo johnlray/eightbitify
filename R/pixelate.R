@@ -58,7 +58,9 @@ pixelate <- function(img_path, resolution){
   for(i in 1:length(xstart)){
     for(j in 1:length(ystart)){
       crop_statement <- paste0(winc, "x", hinc, "+", xstart[i], "+", ystart[j])
-      temp <- image_crop(img, crop_statement) %>% image_quantize(max = 2) %>% get_colorPal() #image_median(radius = 5)
+      temp <- image_crop(img, crop_statement) %>%
+        image_quantize(max = 1) %>%
+        image_median(radius = 5)
 
       res_mat[i, j] <- (as.integer(temp) %>% as.hexmode() %>% as.character() %>% c() %>% table() %>% sort() %>% head(1) %>% names())
     }
