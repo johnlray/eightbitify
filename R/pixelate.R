@@ -36,22 +36,17 @@ pixelate <- function(img_path, resolution){
   img_dims <- dim(img)
   info <- image_info(img)
   
-  #the_cimg <- magick2cimg(img)
-  #cimg_df <- as.data.frame(the_cimg)
+  the_cimg <- magick2cimg(img)
+  cimg_df <- as.data.frame(the_cimg)
   
   w <- info$width
   h <- info$height
   
-  winc <- round(w/256, 0)
-  hinc <- round(h/256, 0)
+  Rs <- as.hexmode(as.integer(the_cimg[,,1]*255))
+  Gs <- as.hexmode(as.integer(the_cimg[,,2]*255))
+  Bs <- as.hexmode(as.integer(the_cimg[,,3]*255))
   
-  #Rs <- as.hexmode(as.integer(the_cimg[,,1]*255))
-  #Gs <- as.hexmode(as.integer(the_cimg[,,2]*255))
-  #Bs <- as.hexmode(as.integer(the_cimg[,,3]*255))
   
-  # break the image into chunks
-  xstart <- seq(1, w, by = winc*2)
-  ystart <- seq(1, h, by = hinc*2)
   
   res_mat <- matrix(nrow = length(xstart), ncol = length(ystart))
   
