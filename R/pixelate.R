@@ -33,16 +33,7 @@ get_colorPal <- function(im, n=8, cs="RGB"){
 pixelate <- function(img_path, resolution){
   img <- image_read('http://jeroen.github.io/images/tiger.svg')
   
-  as_rgb <- data.frame(x = rep(1:dimension[2], each = dimension[1]),
-                       y = rep(dimension[1]:1, dimension[2]),
-                       R = as.vector(img[, , 1]),
-                       G = as.vector(imgg[, , 2]),
-                       B = as.vector(img[, , 3]))
-  
   info <- image_info(img)
-  
-  #the_cimg <- magick2cimg(img)
-  #cimg_df <- as.data.frame(the_cimg)
   
   w <- info$width
   h <- info$height
