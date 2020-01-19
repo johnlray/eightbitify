@@ -42,25 +42,25 @@ pixelate <- function(img_path, resolution){
   w <- info$width
   h <- info$height
   
-  Rs <- as.hexmode(as.integer(the_cimg[,,1]*255))
-  Gs <- as.hexmode(as.integer(the_cimg[,,2]*255))
-  Bs <- as.hexmode(as.integer(the_cimg[,,3]*255))
+  as_rgbs <- data.frame(
+    r = as.hexmode(as.integer(the_cimg[,,1]*255)),
+    g = as.hexmode(as.integer(the_cimg[,,2]*255)),
+    b = as.hexmode(as.integer(the_cimg[,,3]*255))
+  )
   
-  
-  
-  res_mat <- matrix(nrow = length(xstart), ncol = length(ystart))
+  #res_mat <- matrix(nrow = length(xstart), ncol = length(ystart))
   
   # find the average of each chunk
-  for(i in 1:length(xstart)){
-    for(j in 1:length(ystart)){
-      crop_statement <- paste0(winc, "x", hinc, "+", xstart[i], "+", ystart[j])
-      temp <- image_crop(img, crop_statement) %>%
-        image_quantize(max = 1) %>%
-        image_median(radius = 5)
+  #for(i in 1:length(xstart)){
+    #for(j in 1:length(ystart)){
+      #crop_statement <- paste0(winc, "x", hinc, "+", xstart[i], "+", ystart[j])
+      #temp <- image_crop(img, crop_statement) %>%
+        #image_quantize(max = 1) %>%
+        #image_median(radius = 5)
 
-      res_mat[i, j] <- (as.integer(temp) %>% as.hexmode() %>% as.character() %>% c() %>% table() %>% sort() %>% head(1) %>% names())
-    }
-  }
+      #res_mat[i, j] <- (as.integer(temp) %>% as.hexmode() %>% as.character() %>% c() %>% table() %>% sort() %>% head(1) %>% names())
+    #}
+  #}
   
   res <- melt(res_mat)
   res$value <- as.character(res$value)
