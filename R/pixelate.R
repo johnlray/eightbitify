@@ -19,10 +19,11 @@ pixelate <- function(img_path, resolution){
   
   cimg_df <- as.data.frame(the_cimg)
   
-  fidelity <- 27
+  w_fidelity <- round(info$width * 1/80, 0)
+  h_fidelity <- round(info$height * 1/80, 0)
   
-  ws <- seq(1, info$width, fidelity)
-  hs <- seq(1, info$height, fidelity)
+  ws <- seq(1, info$width, w_fidelity)
+  hs <- seq(1, info$height, h_fidelity)
   
   samp_mat <- matrix(ncol = length(hs), nrow = length(ws))
   
@@ -43,5 +44,6 @@ pixelate <- function(img_path, resolution){
   ggplot(pdat, aes(x = Var1, y = Var2)) +
     geom_raster(aes(fill = value)) +
     coord_equal() +
-    coord_flip()
+    theme_void() +
+    theme(legend.position = 'null')
 }
