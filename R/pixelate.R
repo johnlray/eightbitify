@@ -22,13 +22,18 @@ pixelate <- function(img_path, resolution){
   the_val <- rgb(img[,,1], img[,,2],img[,,3])
   myImg <- matrix(the_val, dim(img)[1], dim(img)[2])
   
-  cimg_df <- as.data.frame(the_cimg)
+  #cimg_df <- as.data.frame(the_cimg)
   
   w_fidelity <- round(info$width * 1/200, 0)
   h_fidelity <- round(info$height * 1/200, 0)
   
-  ws <- seq(1, info$width, 1)
-  hs <- seq(1, info$height, 1)
+  ws <- seq(1, info$width, w_fidelity)
+  hs <- seq(1, info$height, h_fidelity)
+  
+  myImg <- myImg[hs, ws]
+  
+  image(matrix(1:length(as.vector(myImg)), nrow = length(hs), ncol = length(ws)), col=as.vector(myImg), xaxt = "n", yaxt = "n")
+  
   
   samp_mat <- matrix(ncol = length(hs), nrow = length(ws))
   
@@ -45,7 +50,6 @@ pixelate <- function(img_path, resolution){
     }
   }
   
-  image(matrix(1:length(as.vector(samp_mat)), nrow = 404, ncol = 378), col=as.vector(samp_mat), xaxt = "n", yaxt = "n")
   
   #pdat <- reshape2::melt(samp_mat)
   
