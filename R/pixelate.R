@@ -19,8 +19,8 @@ pixelate <- function(img_path, resolution){
   
   cimg_df <- as.data.frame(the_cimg)
   
-  w_fidelity <- round(info$width * 1/80, 0)
-  h_fidelity <- round(info$height * 1/80, 0)
+  w_fidelity <- round(info$width * 1/100, 0)
+  h_fidelity <- round(info$height * 1/100, 0)
   
   ws <- seq(1, info$width, w_fidelity)
   hs <- seq(1, info$height, h_fidelity)
@@ -41,9 +41,10 @@ pixelate <- function(img_path, resolution){
   
   pdat <- reshape2::melt(samp_mat)
   
-  ggplot(pdat, aes(x = Var1, y = Var2)) +
-    geom_raster(aes(fill = value)) +
-    coord_equal() +
-    theme_void() +
-    theme(legend.position = 'null')
+  #ggplot(pdat, aes(x = Var1, y = Var2, fill = value)) +
+  #  geom_tile() +
+  #  coord_flip() +
+  #  scale_fill_manual(values = as.character(pdat$value)) +
+  #  theme_void() +
+  #  theme(legend.position = 'null')
 }
