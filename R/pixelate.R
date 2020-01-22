@@ -19,27 +19,30 @@ pixelate <- function(img_path, resolution){
   
   cimg_df <- as.data.frame(the_cimg)
   
-  w_fidelity <- round(info$width * 1/100, 0)
-  h_fidelity <- round(info$height * 1/100, 0)
+  w_fidelity <- round(info$width * 1/200, 0)
+  h_fidelity <- round(info$height * 1/200, 0)
   
-  ws <- seq(1, info$width, w_fidelity)
-  hs <- seq(1, info$height, h_fidelity)
+  ws <- seq(1, info$width, 1)
+  hs <- seq(1, info$height, 1)
   
   samp_mat <- matrix(ncol = length(hs), nrow = length(ws))
   
   for(i in 1:nrow(samp_mat)){
     for(j in 1:ncol(samp_mat)){
       samp_mat[i, j] <- rgb(
-        red = the_cimg[ws[i], hs[j], 1, 1],
-        blue = the_cimg[ws[i], hs[j], 1, 2],
-        green = the_cimg[ws[i] ,hs[j], 1, 3]
+        red = the_cimg[ws[i], hs[j], 1, 1]*255,
+        blue = the_cimg[ws[i], hs[j], 1, 2]*255,
+        green = the_cimg[ws[i] ,hs[j], 1, 3]*255,
+        maxColorValue = 255
       )
       
       print(samp_mat[i, j])
     }
   }
   
-  pdat <- reshape2::melt(samp_mat)
+  image(matrix(1:length(as.vector(samp_mat)), nrow = 404, ncol = 378), col=as.vector(samp_mat), xaxt = "n", yaxt = "n")
+  
+  #pdat <- reshape2::melt(samp_mat)
   
   #ggplot(pdat, aes(x = Var1, y = Var2, fill = value)) +
   #  geom_tile() +
