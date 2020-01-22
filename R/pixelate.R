@@ -32,31 +32,6 @@ pixelate <- function(img_path, resolution){
   
   myImg <- myImg[hs, ws]
   
-  image(matrix(1:length(as.vector(myImg)), nrow = length(hs), ncol = length(ws)), col=as.vector(myImg), xaxt = "n", yaxt = "n")
+  image(t(matrix(length(as.vector(myImg)):1, nrow = length(hs), ncol = length(ws))), col=as.vector(myImg), xaxt = "n", yaxt = "n")
   
-  
-  samp_mat <- matrix(ncol = length(hs), nrow = length(ws))
-  
-  for(i in 1:nrow(samp_mat)){
-    for(j in 1:ncol(samp_mat)){
-      samp_mat[i, j] <- rgb(
-        red = the_cimg[ws[i], hs[j], 1, 1]*255,
-        blue = the_cimg[ws[i], hs[j], 1, 2]*255,
-        green = the_cimg[ws[i] ,hs[j], 1, 3]*255,
-        maxColorValue = 255
-      )
-      
-      print(samp_mat[i, j])
-    }
-  }
-  
-  
-  #pdat <- reshape2::melt(samp_mat)
-  
-  #ggplot(pdat, aes(x = Var1, y = Var2, fill = value)) +
-  #  geom_tile() +
-  #  coord_flip() +
-  #  scale_fill_manual(values = as.character(pdat$value)) +
-  #  theme_void() +
-  #  theme(legend.position = 'null')
 }
