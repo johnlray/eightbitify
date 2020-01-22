@@ -11,11 +11,16 @@ library(imager)
 library(ggplot2)
 library(reshape2)
 library(scales)
+library(jpeg)
 
 pixelate <- function(img_path, resolution){
-  info <- image_read('~/Downloads/IMG_20190712_095348.jpg') %>% image_info()
+  img <- readJPEG('~/Downloads/IMG_20190712_095348.jpg')
+  info <- image_info(image_read('~/Downloads/IMG_20190712_095348.jpg'))
   
-  the_cimg <- imager::load.image('~/Downloads/IMG_20190712_095348.jpg') %>% imager::as.cimg()
+  #the_cimg <- imager::load.image('~/Downloads/IMG_20190712_095348.jpg') %>% imager::as.cimg()
+  
+  the_val <- rgb(img[,,1], img[,,2],img[,,3])
+  myImg <- matrix(the_val, dim(img)[1], dim(img)[2])
   
   cimg_df <- as.data.frame(the_cimg)
   
