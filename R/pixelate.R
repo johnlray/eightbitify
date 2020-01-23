@@ -6,6 +6,7 @@
 #' @export
 #' 
 
+library(colordistance)
 library(magick)
 library(imager)
 library(ggplot2)
@@ -20,6 +21,11 @@ pixelate <- function(img_path, resolution){
   #the_cimg <- imager::load.image('~/Downloads/IMG_20190712_095348.jpg') %>% imager::as.cimg()
   
   the_val <- rgb(img[,,1], img[,,2],img[,,3])
+  
+  allcols <- table(the_val)
+  
+  colordistance::getColorDistanceMatrix(getHistList('~/Downloads/IMG_20190712_095348.jpg'))
+  
   myImg <- matrix(the_val, dim(img)[1], dim(img)[2])
   
   #cimg_df <- as.data.frame(the_cimg)
