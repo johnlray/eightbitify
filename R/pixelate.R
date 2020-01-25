@@ -25,8 +25,12 @@ pixelate <- function(img_path, resolution = 200){
   allcols <- table(the_val)
   
   # set a smoothing threshold
+  threshold <- .5
   
   # find nearest color above threshold for every color below threshold
+  # distance between each color and nearest color above threshold
+  # minimize that distance
+  # grepl the old color to the new color
   
   myImg <- matrix(the_val, dim(img)[1], dim(img)[2])
   
