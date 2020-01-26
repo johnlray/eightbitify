@@ -20,7 +20,6 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   
   the_val <- rgb(img[,,1], img[,,2],img[,,3])
   
-  # to smooth colors...
   # find the uncommon colors
   allcols <- table(the_val)
   
@@ -28,11 +27,12 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   threshold <- .5
   
   # find nearest color above threshold for every color below threshold
-  #as.data.frame(img[1:5,1:5 ,1:3])
   
   # distance between each color and nearest color above threshold
   # minimize that distance
   # grepl the old color to the new color
+  
+  
   myImg <- matrix(the_val, dim(img)[1], dim(img)[2])
   
   w_fidelity <- round(info$width * 1/resolution, 0)
