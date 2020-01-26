@@ -26,6 +26,8 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   # set a smoothing threshold
   threshold <- .5
   
+  test <- as.data.frame(img[1:5,1:5 ,1:3])
+  
   # find nearest color above threshold for every color below threshold
   
   # distance between each color and nearest color above threshold
