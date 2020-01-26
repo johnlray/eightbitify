@@ -14,9 +14,9 @@ library(reshape2)
 library(scales)
 library(jpeg)
 
-pixelate <- function(img_path, resolution = 200){
-  img <- readJPEG('~/Downloads/IMG_20190712_095348.jpg')
-  info <- image_info(image_read('~/Downloads/IMG_20190712_095348.jpg'))
+pixelate <- function(img_path, resolution = 200, imgpath){
+  img <- readJPEG('~/Desktop/vzxLeexP9rBn9zKfwhXPS6TK_cwIP9kaFnFN1r28dL4.jpg')
+  info <- image_info(image_read('~/Desktop/vzxLeexP9rBn9zKfwhXPS6TK_cwIP9kaFnFN1r28dL4.jpg'))
   
   the_val <- rgb(img[,,1], img[,,2],img[,,3])
   
@@ -28,10 +28,11 @@ pixelate <- function(img_path, resolution = 200){
   threshold <- .5
   
   # find nearest color above threshold for every color below threshold
+  
+  
   # distance between each color and nearest color above threshold
   # minimize that distance
   # grepl the old color to the new color
-  
   myImg <- matrix(the_val, dim(img)[1], dim(img)[2])
   
   w_fidelity <- round(info$width * 1/resolution, 0)
