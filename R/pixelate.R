@@ -29,6 +29,7 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   test <- as.data.frame(img[1:5,1:5 ,1:3])
   
   # find nearest color above threshold for every color below threshold
+  a_col <- img[1, 1, ]
   
   # distance between each color and nearest color above threshold
   # minimize that distance
