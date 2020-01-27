@@ -32,6 +32,11 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   a_col <- img[1, 1, ]
   
   # distance between each color and nearest color above threshold
+  unique_cols <- lapply(img[x, y], function(x, y)){
+    newrow <- img[x, y, ]
+    tot <- rbind(tot, newrow)
+  }
+  
   # minimize that distance
   # grepl the old color to the new color
   
