@@ -26,21 +26,22 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   # set a smoothing threshold
   threshold <- .5
   
-  test <- as.data.frame(img[1:5,1:5 ,1:3])
+  test <- as.data.frame(img[1:5,1:5 , ])
   
   # find nearest color above threshold for every color below threshold
   a_col <- img[1, 1, ]
+  b_col <- img[200:202, , ]
+  
+  dist <- sqrt((b_col[1] - a_col[1]) + (b_col[2] - a_col[2]) + (b_col[3] - a_col[3]))
   
   # distance between each color and nearest color above threshold
-  unique_cols <- lapply(img[x, y], function(x, y)){
+  unique_cols <- lapply(dims(img), function(x, y){
     newrow <- img[x, y, ]
     tot <- rbind(tot, newrow)
-  }
+  })
   
   # minimize that distance
   # grepl the old color to the new color
-  
-  
   myImg <- matrix(the_val, dim(img)[1], dim(img)[2])
   
   w_fidelity <- round(info$width * 1/resolution, 0)
