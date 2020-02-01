@@ -33,6 +33,7 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   
   # minimize that distance
   dist <- sqrt((b_col[1] - a_col[1]) + (b_col[2] - a_col[2]) + (b_col[3] - a_col[3]))
+  
   # grepl the old color to the new color
   myImg <- matrix(the_val, dim(img)[1], dim(img)[2])
   
