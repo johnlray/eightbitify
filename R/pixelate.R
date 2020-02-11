@@ -25,7 +25,7 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   allcols <- rev(sort(table(the_val)))
   
   # pick a top n
-  top_n <- allcols[1:200]
+  top_n <- names(allcols)[1:200]
   
   
   # set a smoothing threshold
