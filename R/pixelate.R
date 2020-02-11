@@ -13,7 +13,7 @@ library(ggplot2)
 library(reshape2)
 library(scales)
 library(jpeg)
-library(av)
+# library(av)
 
 pixelate <- function(img_path, resolution = 200, imgpath){
   img <- readJPEG('~/Desktop/vzxLeexP9rBn9zKfwhXPS6TK_cwIP9kaFnFN1r28dL4.jpg')
@@ -22,7 +22,11 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   the_val <- rgb(img[,,1], img[,,2],img[,,3])
   
   # find the uncommon colors
-  allcols <- table(the_val)
+  allcols <- rev(sort(table(the_val)))
+  
+  # pick a top n
+  top_n <- allcols[1:200]
+  
   
   # set a smoothing threshold
   threshold <- .5
