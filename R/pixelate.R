@@ -13,6 +13,7 @@ library(ggplot2)
 library(reshape2)
 library(scales)
 library(jpeg)
+library(av)
 
 pixelate <- function(img_path, resolution = 200, imgpath){
   img <- readJPEG('~/Desktop/vzxLeexP9rBn9zKfwhXPS6TK_cwIP9kaFnFN1r28dL4.jpg')
