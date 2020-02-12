@@ -19,24 +19,15 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   img <- readJPEG('~/Desktop/vzxLeexP9rBn9zKfwhXPS6TK_cwIP9kaFnFN1r28dL4.jpg')
   info <- image_info(image_read('~/Desktop/vzxLeexP9rBn9zKfwhXPS6TK_cwIP9kaFnFN1r28dL4.jpg'))
   
-  the_val <- rgb(img[,,1], img[,,2],img[,,3])
+  #the_val <- rgb(img[,,1], img[,,2],img[,,3])
   
-  vals <- matrix(c(img[,,1], img[,,2],img[,,3]), ncol = 3, byrow = T)
+  vals <- matrix(c(img[,,1], img[,,2],img[,,3]), ncol = 3, byrow = F)
   
   # find the uncommon colors
-  allcols <- rev(sort(table(the_val)))
+  allcols <- rev(sort(table(vals)))
   
   # pick a top n
   top_n <- names(allcols)[1:200]
-  
-  
-  # set a smoothing threshold
-  threshold <- .5
-  
-  # find nearest color above threshold for every color below threshold
-  a_col <- img[1, 1, ]
-  
-  col_mat <- matrix(nrow=dim(img)[1]*dim(img)[2], ncol=3)
   
   # minimize that distance
   dist <- sqrt((b_col[1] - a_col[1]) + (b_col[2] - a_col[2]) + (b_col[3] - a_col[3]))
