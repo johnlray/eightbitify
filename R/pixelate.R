@@ -22,6 +22,7 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   #the_val <- rgb(img[,,1], img[,,2],img[,,3])
   
   vals <- matrix(c(img[,,1], img[,,2],img[,,3]), ncol = 3, byrow = F)
+  vals[, 4] <- paste(vals[, 1], vals[, 2], vals[, 3], collapse=" ")
   
   # find the uncommon colors
   allcols <- rev(sort(table(vals)))
