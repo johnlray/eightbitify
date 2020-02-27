@@ -18,8 +18,6 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   img <- readJPEG('~/Desktop/vzxLeexP9rBn9zKfwhXPS6TK_cwIP9kaFnFN1r28dL4.jpg')
   info <- image_info(image_read('~/Desktop/vzxLeexP9rBn9zKfwhXPS6TK_cwIP9kaFnFN1r28dL4.jpg'))
   
-  #the_val <- rgb(img[,,1], img[,,2],img[,,3])
-  
   vals <- matrix(c(img[,,1], img[,,2],img[,,3]), ncol = 3, byrow = F)
   vals[, 4] <- paste(vals[, 1], vals[, 2], vals[, 3], collapse=" ")
   
@@ -30,6 +28,10 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   top_n <- names(allcols)[1:200]
   
   # minimize that distance
+  for(i in 1:nrow(vals)){
+    closest <- which.min()
+  }
+
   dist <- sqrt((b_col[1] - a_col[1]) + (b_col[2] - a_col[2]) + (b_col[3] - a_col[3]))
   
   # grepl the old color to the new color
