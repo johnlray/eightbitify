@@ -5,7 +5,6 @@
 #' @examples
 #' @export
 #' 
-
 library(colordistance)
 library(magick)
 library(imager)
