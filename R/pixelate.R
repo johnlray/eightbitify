@@ -37,15 +37,15 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   # grepl the old color to the new color
   myImg <- matrix(the_val, dim(img)[1], dim(img)[2])
   
-  w_fidelity <- round(info$width * 1/resolution, 0)
-  h_fidelity <- round(info$height * 1/resolution, 0)
-  
-  ws <- seq(1, info$width, w_fidelity)
-  hs <- seq(1, info$height, h_fidelity)
-  
-  myImg <- myImg[hs, ws]
-  
-  out <- image(t(matrix(length(as.vector(myImg)):1, nrow = length(hs), ncol = length(ws))), col=as.vector(myImg), xaxt = "n", yaxt = "n")
+  # w_fidelity <- round(info$width * 1/resolution, 0)
+  # h_fidelity <- round(info$height * 1/resolution, 0)
+  # 
+  # ws <- seq(1, info$width, w_fidelity)
+  # hs <- seq(1, info$height, h_fidelity)
+  # 
+  # myImg <- myImg[hs, ws]
+  # 
+  # out <- image(t(matrix(length(as.vector(myImg)):1, nrow = length(hs), ncol = length(ws))), col=as.vector(myImg), xaxt = "n", yaxt = "n")
   
   return(out)
 }
