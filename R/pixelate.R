@@ -29,6 +29,7 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   # minimize that distance
   for(i in 1:nrow(vals)){
     closest <- top_n[which.min(abs(sum(vals[, i]) - top_n))]
+    vals[i] <- closest
   }
 
   dist <- sqrt((b_col[1] - a_col[1]) + (b_col[2] - a_col[2]) + (b_col[3] - a_col[3]))
