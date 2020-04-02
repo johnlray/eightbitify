@@ -18,7 +18,6 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   info <- image_info(image_read('~/Desktop/vzxLeexP9rBn9zKfwhXPS6TK_cwIP9kaFnFN1r28dL4.jpg'))
   
   vals <- matrix(c(img[,,1], img[,,2],img[,,3]), ncol = 3, byrow = F)
-  vals[, 4] <- paste(vals[, 1], vals[, 2], vals[, 3], collapse=" ")
   
   # find the uncommon colors
   allcols <- rev(sort(table(vals)))
