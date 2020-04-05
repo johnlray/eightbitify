@@ -26,6 +26,8 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   ws <- seq(1, info$width, w_fidelity)
   hs <- seq(1, info$height, h_fidelity)
   
+  myImg <- matrix(rgb(img[,,1], img[,,2], img[,,3]), dim(img)[1], dim(img)[2])
+  
   myImg <- myImg[hs, ws]
   
   out <- image(t(matrix(length(as.vector(myImg)):1, nrow = length(hs), ncol = length(ws))), col=as.vector(myImg), xaxt = "n", yaxt = "n")
