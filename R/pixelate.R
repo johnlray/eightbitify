@@ -32,13 +32,13 @@ pixelate <- function(img_path, resolution = 200, imgpath){
   
   out <- image(t(matrix(length(as.vector(myImg)):1, nrow = length(hs), ncol = length(ws))), col=as.vector(myImg), xaxt = "n", yaxt = "n")
   
-  vals <- matrix(c(img[,,1], img[,,2],img[,,3]), ncol = 3, byrow = F)
+  #vals <- matrix(c(img[,,1], img[,,2],img[,,3]), ncol = 3, byrow = F)
   
   # pick a top n
-  vals %>%
-    data.frame() %>% 
-    #sample_n(size = 100000) %>%
-    .[order( .[, 1], .[, 2], .[, 3]), ] %>%
+  as.vector(myImg) %>%
+    sort() %>% 
+    rev() %>%
+    filter(!duplicated) %>%
     head()
 
   
