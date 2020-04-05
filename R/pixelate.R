@@ -15,7 +15,7 @@ library(jpeg)
 library(tidyverse)
 
 pixelate <- function(img_path, resolution = 200, imgpath){
-  resolution <- 30
+  resolution <- 100
   
   img <- readJPEG('~/Desktop/vzxLeexP9rBn9zKfwhXPS6TK_cwIP9kaFnFN1r28dL4.jpg')
   info <- image_info(image_read('~/Desktop/vzxLeexP9rBn9zKfwhXPS6TK_cwIP9kaFnFN1r28dL4.jpg'))
